@@ -14,6 +14,7 @@ import cookieParser = require('cookie-parser')
 async function bootstrap() {
   console.log('Helllllllllllo world!')
   const app = await NestFactory.create(AppModule)
+  app.enableCors()
 
   app.use(cookieParser(process.env.COOKIE_SECRET))
   app.setGlobalPrefix('api')
