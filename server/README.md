@@ -23,7 +23,6 @@
 Swagger이라는 프로그램을 이용하여 현재 서버에 나와있는 모든 api를 보며 테스트 할 수 있습니다. 
 `Try It Out` 버튼을 누르면 굳이 postman 같은 툴을 쓰지 않고 swagger 내에서 바로 테스트가 가능합니다.
 `Execute` 을 누르면 서버로 request가 전송이 되고, 밑에 Responses 영역에 Response code (200, 400 등) 과 detail이 돌아옵니다. 
-[API list](##API-list)
 
 
 ### 개발환경 안내
@@ -112,11 +111,12 @@ Ctrl+C 누르면 됨 (Mac & Windows 동일함)
 
 - 회원가입시 이메일 인증을 위해 이메일을 입력할 때 사용.
 
-![image-20210531194646817](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531194646817.png)
+![image-20210531194646817](https://user-images.githubusercontent.com/59490892/120205988-960f4280-c265-11eb-99f6-91f7404d65f0.png)
+
 
 - cau2@cau.ac.kr 입력 시 유효한 status code(200)가 response된다.
 
-![image-20210531195024849](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531195024849.png)
+![image-20210531195024849](https://user-images.githubusercontent.com/59490892/120206114-bd660f80-c265-11eb-8c6b-48f9607a0973.png).png)
 
 
 
@@ -126,20 +126,22 @@ Ctrl+C 누르면 됨 (Mac & Windows 동일함)
 
 - 회원가입시 이메일로 전송된 이메일 인증번호 확인 시 사용한다. (현재 코드는 000000 으로 통일)
 
-![image-20210531195610667](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531195610667.png)
+![image-20210531195610667](https://user-images.githubusercontent.com/59490892/120206195-d969b100-c265-11eb-8a64-dc8c36f5b2bb.png)
+
 
 - status code
 
-![image-20210531200008547](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531200008547.png)
+![image-20210531200008547](https://user-images.githubusercontent.com/59490892/120206244-eab2bd80-c265-11eb-9c0e-28fd9c4cb5a8.png)
+
 
 - 인증코드를 정상적으로 입력하였을때의 결과값이다.  email string이 유효하며 code string=000000이므로 status code(200)이고 True
 
-![image-20210531195754652](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531195754652.png)
+![image-20210531195754652](https://user-images.githubusercontent.com/59490892/120206277-f69e7f80-c265-11eb-909a-3b01714dc9d3.png)
+
 
 - 인증코드를 잘못 입력하였을때의 결과값이다. email string이 유효하며 code string=111111이므로 status code(200)이고 False. 
-
-![image-20210531182335055](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531182335055.png)
-
+- 
+![image-20210531182335055](https://user-images.githubusercontent.com/59490892/120206297-fdc58d80-c265-11eb-8c24-47c76cb9699c.png)
 
 ### auth
 ##### 회원가입(/api/auth/sign-up)
@@ -148,11 +150,12 @@ Ctrl+C 누르면 됨 (Mac & Windows 동일함)
 
 - role,email,password,fullName,grade,classnumber,studentNumber,phone을 request한다.
 
-  ![image-20210531225155611](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531225155611.png)
+![image-20210531225155611](https://user-images.githubusercontent.com/59490892/120206391-1c2b8900-c266-11eb-90a0-fc05e7680133.png)
+
 
 - 정상적으로 회원가입이 완료된 경우 status code(200)가 response된다.
 
-![image-20210531203611613](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531203611613.png)
+![image-20210531203611613](https://user-images.githubusercontent.com/59490892/120206367-1766d500-c266-11eb-8607-4340849fb569.png)
 
 
 
@@ -164,13 +167,15 @@ Ctrl+C 누르면 됨 (Mac & Windows 동일함)
 
 - request: email/password를 전송하여 request
 
-  ![image-20210531225132344](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531225132344.png)
+![image-20210531225132344](https://user-images.githubusercontent.com/59490892/120206424-25b4f100-c266-11eb-9388-d09074c3979e.png)
+
 
 - response: id,role,email,fullName,grade,classnumber,studentNumber,phone response
 
 - 정상적으로 로그인이 완료된 경우 status code(200)가 response된다.
 
-![image-20210531201123841](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531201123841.png)
+![image-20210531201123841](https://user-images.githubusercontent.com/59490892/120206521-43825600-c266-11eb-86aa-d0b5f519060a.png)
+
 
 
 
@@ -181,7 +186,7 @@ Ctrl+C 누르면 됨 (Mac & Windows 동일함)
 - 로그아웃에 사용되는 api
 - 정상적으로 로그아웃이 완료된 경우 status code(201)가 response된다.
 
-![image-20210531182525311](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531182525311.png)
+![image-20210531182525311](https://user-images.githubusercontent.com/59490892/120206537-49783700-c266-11eb-8ae4-557ef0d9d9a5.png)
 
 
 
@@ -190,7 +195,7 @@ Ctrl+C 누르면 됨 (Mac & Windows 동일함)
 - 현재 로그인 되어있는 user의 정보를 불러와 데이터값을 조회하는 경우 사용된다.
 - 정상적으로 조회된 경우 status code(200)과 함께 user의 데이터 값이 response된다.
 
-![image-20210531203718633](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531203718633.png)
+![image-20210531203718633](https://user-images.githubusercontent.com/59490892/120206576-539a3580-c266-11eb-8c71-134032174abe.png)
 
 
 
@@ -201,7 +206,7 @@ Ctrl+C 누르면 됨 (Mac & Windows 동일함)
 - 회원 탈퇴시 사용된다.
 - 정상적으로 회원 탈퇴된 경우 status code(200)가 response된다.
 
-![image-20210531201628363](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531201628363.png)
+![image-20210531201628363](https://user-images.githubusercontent.com/59490892/120206587-58f78000-c266-11eb-8da9-45c49673f10c.png)
 
 
 
@@ -215,7 +220,7 @@ Ctrl+C 누르면 됨 (Mac & Windows 동일함)
 - page,pagesize,order 값을 설정하여 반환되는 데이터의 수와 정렬 방식을 조정해줄 수 있다.
 - 정상적으로 데이터가 조회된 경우 status code(200)와 함께 현재 조회가능한 lecture list가 response된다.
 
-![image-20210531193347608](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531193347608.png)
+![image-20210531193347608](https://user-images.githubusercontent.com/59490892/120206599-5d239d80-c266-11eb-8555-2cc6be046e07.png)
 
 
 
@@ -227,13 +232,14 @@ Ctrl+C 누르면 됨 (Mac & Windows 동일함)
 
 - lectureName(강의명),grade,lectureCode,lectureTime(수업시간)을 request한다.
 
-  ![image-20210531225327147](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531225327147.png)
+![image-20210531225327147](https://user-images.githubusercontent.com/59490892/120206616-63b21500-c266-11eb-8578-9cfd6baf7d46.png)
 
-  ![image-20210531203823541](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531203823541.png)
+![image-20210531203823541](https://user-images.githubusercontent.com/59490892/120206731-847a6a80-c266-11eb-9081-1658ab424a80.png)
+
 
 - 정상적으로 강의가 개설된 경우 status code(200)가 response된다.
 
-  ![image-20210531203833420](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531203833420.png)
+![image-20210531203833420](https://user-images.githubusercontent.com/59490892/120206692-7a586c00-c266-11eb-8723-6d62329752b6.png)
 
 
 
@@ -249,11 +255,12 @@ Ctrl+C 누르면 됨 (Mac & Windows 동일함)
 
 - 정상적으로 강의가 개설된 경우 status code(200)가 response된다.
 
-  ![image-20210531205114051](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531205114051.png)
+![image-20210531205114051](https://user-images.githubusercontent.com/59490892/120206767-8fcd9600-c266-11eb-88d5-cdaf9213e466.png)
+
 
 - responese body 부분에서 수강신청을 진행한 student의 데이터가 "users" 리스트에 추가되었음을 확인할 수 있다.
 
-![image-20210531205143007](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531205143007.png)
+![image-20210531205143007](https://user-images.githubusercontent.com/59490892/120206787-952ae080-c266-11eb-8957-0b9ba2e3cdc6.png)
 
 
 
@@ -266,7 +273,8 @@ Ctrl+C 누르면 됨 (Mac & Windows 동일함)
 - Teacher/Student가 현재 본인이 강의/수강하고 있는lecture 목록을 조회할 때 사용된다
 - 정상적으로 수업이 조회된 경우 status code(200)와 lecture list가 response된다.
 
-![image-20210531193644709](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531193644709.png)
+![image-20210531193644709](https://user-images.githubusercontent.com/59490892/120206817-9d831b80-c266-11eb-80d3-9f9c7a7d24a8.png)
+
 
 
 ### attendence
@@ -278,20 +286,24 @@ Ctrl+C 누르면 됨 (Mac & Windows 동일함)
 
 - check는 ATTENDED/ABSENT/TARDY/ETC 총 4가지 값 중 1가지로 이루어져야한다.
 
-  ![image-20210531225714077](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531225714077.png)
+![image-20210531225714077](https://user-images.githubusercontent.com/59490892/120206853-abd13780-c266-11eb-9bb6-23ed8c1dbf8e.png)
+
 
 - 다음은 check에 'ABSENT'를 넣어 request했을때의 결과이다.
 
-![image-20210531230053631](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531230053631.png)
+![image-20210531230053631](https://user-images.githubusercontent.com/59490892/120207311-3b76e600-c267-11eb-9b06-33dc3116c122.png)
 
 - 정상적으로 출석체크가 완료되어 status code(200)와 response된다.
 
-![image-20210531225051730](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531225051730.png)
+![image-20210531225051730](https://user-images.githubusercontent.com/59490892/120206990-d3280480-c266-11eb-8f61-531c52cba7c9.png)
+
 
 - 다음은 check에 null값을 넣어 request했을때의 결과이다.
 
-![image-20210531225207267](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531225207267.png)
+![image-20210531182124067](https://user-images.githubusercontent.com/59490892/120206962-c86d6f80-c266-11eb-8a01-10ce03e7206b.png)
+
 
 - status code(500)와 response된다.
 
-![image-20210531225216255](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531225216255.png)
+![image-20210531225216255](https://user-images.githubusercontent.com/59490892/120206986-cf947d80-c266-11eb-9ca5-0ff915d8b070.png)
+

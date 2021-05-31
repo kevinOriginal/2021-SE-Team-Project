@@ -6,7 +6,7 @@ import App from './App'
 import reportWebVitals from './reportWebVitals'
 import axios from 'axios'
 
-if (ProcessingInstruction.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production') {
   console.log('PRODUCTION DETECTED!')
   axios.defaults.baseURL = `https://sw-engineering.festa.dev`
 }
