@@ -2,6 +2,11 @@ import React from 'react'
 import { Form, Input, Button, Row } from 'antd'
 import './Login.css'
 import userLoginImage from './userlogin.svg'
+import axios from 'axios'
+import { useHistory } from 'react-router'
+
+//test data
+import { shareStudents } from './constants'
 
 const inputLayout = {
   labelCol: { span: 6 },
@@ -21,9 +26,38 @@ const buttonLayout = {
   },
 }
 
+const validateMessages = {
+  required: '${label}을(를) 입력하세요.',
+  types: {
+    email: '유효한 이메일이 아닙니다.',
+  },
+}
+
 const Login = () => {
-  const onFinish = (result) => {
-    console.log('finish, result:', result)
+  const history = useHistory()
+
+  const onFinish = (data) => {
+    const url = '/api/auth/login'
+    const headers = {
+      accept: 'application/json',
+      'Content-Type': 'application/json',
+    }
+    axios
+      .post(url, data, {
+        headers: headers,
+      })
+      .then((response) => {
+        history.push({
+          pathname: '/',
+          state: { userObj: response.data },
+        })
+      })
+      .catch((error) => {
+        if (!error.response) console.log(error)
+        else if (error.response.status == 500)
+          alert('이메일 또는 비밀번호가 틀립니다.')
+        else alert(JSON.stringify(error.response.data))
+      })
   }
 
   const onFinishFailed = (result) => {
@@ -31,7 +65,7 @@ const Login = () => {
   }
 
   const moveSignup = (result) => {
-    console.log('moveSignup result: ', result)
+    history.push('/signup')
   }
 
   return (
@@ -49,14 +83,15 @@ const Login = () => {
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         name="loginForm"
+        validateMessages={validateMessages}
       >
         <Form.Item
-          label="ID"
-          name="id"
+          label="Email"
+          name="email"
           rules={[
             {
+              type: 'email',
               required: true,
-              message: 'ID를 입력하세요.',
             },
           ]}
         >
@@ -66,12 +101,7 @@ const Login = () => {
         <Form.Item
           label="Password"
           name="password"
-          rules={[
-            {
-              required: true,
-              message: '비밀번호를 입력하세요.',
-            },
-          ]}
+          rules={[{ required: true }]}
         >
           <Input.Password />
         </Form.Item>

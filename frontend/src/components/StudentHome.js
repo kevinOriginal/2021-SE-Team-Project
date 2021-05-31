@@ -1,19 +1,16 @@
-import { ScheduleOutlined } from '@ant-design/icons'
 import React, { useState } from 'react'
 import LectureTemplate from './LectureTemplate'
 import { sharedTemplate, shareLectures } from './constants'
 
-function StudentHome({ userObj }) {
-  const lectures = shareLectures
-
+function StudentHome({ userObj, lectures }) {
   const columns = sharedTemplate
 
   return (
     <LectureTemplate
       columns={columns}
       lectures={lectures}
-      type={userObj.type}
-      name={userObj.name}
+      type={userObj.role}
+      name={userObj.fullName}
     ></LectureTemplate>
   )
 }

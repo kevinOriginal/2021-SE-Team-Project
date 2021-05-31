@@ -1,8 +1,7 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './App.css'
-import { useState } from 'react'
 import LayoutCtrl from './components/LayoutCtrl'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { Route, useLocation } from 'react-router-dom'
 import Login from './components/Login'
 import Signup from './components/Signup'
 import Home from './components/Home'
@@ -14,51 +13,51 @@ import AttendanceCheck from './components/AttendanceCheck'
 import { shareLectures, shareStudents } from './components/constants'
 
 function App() {
-  const [userObj, setUserObj] = useState({
-    id: 1,
-    email: '',
-    name: '김학생',
-    type: 'S',
-    phone: '',
-    grade: 1,
-  })
+  const location = useLocation()
+
+  const [userObj, setUserObj] = useState(
+    location.state ? location.state.userObj : {},
+  )
+  console.log(location.state)
+
+  useEffect(() => {
+    setUserObj(location.state ? location.state.userObj : {})
+  }, [location])
 
   return (
     <div className="App">
-      <BrowserRouter>
-        <LayoutCtrl userObj={userObj}>
-          <Route
-            path="/"
-            exact
-            component={() => {
-              if (userObj) {
-                return <Home userObj={userObj} />
-              }
-              return <Login />
-            }}
-          />
-          <Route path="/signup" exact component={SelectSignup} />
-          <Route
-            path="/signup/teacher"
-            render={() => <Signup isStudentScreen={false} />}
-          />
-          <Route
-            path="/signup/student"
-            render={() => <Signup isStudentScreen={true} />}
-          />
-          <Route path="/sugang" component={Sugang} />
-          <Route
-            path="/attendance"
-            render={() => (
-              <AttendanceCheck
-                studentsData={shareStudents} // test data
-                lectureData={shareLectures[0]} // test data
-                lectureHour={1} // test data, 수업 차시 숫자
-              />
-            )}
-          />
-        </LayoutCtrl>
-      </BrowserRouter>
+      <LayoutCtrl userObj={userObj}>
+        <Route
+          path="/"
+          exact
+          component={() => {
+            if (userObj.id) {
+              return <Home userObj={userObj} />
+            }
+            return <Login />
+          }}
+        />
+        <Route path="/signup" exact component={SelectSignup} />
+        <Route
+          path="/signup/teacher"
+          render={() => <Signup isStudentScreen={false} />}
+        />
+        <Route
+          path="/signup/student"
+          render={() => <Signup isStudentScreen={true} />}
+        />
+        <Route path="/sugang" component={Sugang} />
+        <Route
+          path="/attendance"
+          render={() => (
+            <AttendanceCheck
+              studentsData={shareStudents} // test data
+              lectureData={location.state.lectureData}
+              lectureHour={location.state.nth}
+            />
+          )}
+        />
+      </LayoutCtrl>
     </div>
   )
 }

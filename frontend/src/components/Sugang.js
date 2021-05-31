@@ -1,15 +1,53 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { sharedTemplate, shareLectures } from './constants'
 import './LectureTemplate.css'
 import LectureTable from './LectureTable'
 import { Button, Popconfirm } from 'antd'
+import axios from 'axios'
 
 function Sugang() {
-  const lectures = shareLectures
+  const [lectures, setLectures] = useState([])
+
+  useEffect(() => {
+    const url = `/api/lectures`
+
+    const headers = {
+      'Content-Type': 'application/json; charset=utf-8',
+      accept: '*/*',
+    }
+
+    const params = {
+      page: 1,
+      pageSize: 50,
+      order: 'ASC',
+    }
+
+    axios
+      .get(url, {
+        params: params,
+        haeders: headers,
+      })
+      .then((res) => {
+        console.log(res)
+        setLectures(res.data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }, [])
 
   function confirm(lectureId) {
     console.log(lectureId)
-    //Todo : lecID를 통해 서버에 수강신청 요청 보내기
+    axios
+      .patch(`/api/lectures/${lectureId}`)
+      .then((res) => {
+        // console.log(res)
+        alert('신청이 완료되었습니다.')
+      })
+      .catch((err) => {
+        console.log(err)
+        alert(`신청에 실패했습니다.`)
+      })
   }
 
   const columns = [
@@ -22,8 +60,8 @@ function Sugang() {
       align: 'center',
       render: (text, record) => (
         <Popconfirm
-          title={`${record.lectureName}(${record.teacherName}) 신청하시겠습니까?`}
-          onConfirm={() => confirm(record.lectureId)}
+          title={`[${record.lectureName}]과목을 신청하시겠습니까?`}
+          onConfirm={() => confirm(record.id)}
           okText="네"
           cancelText="아니요"
         >

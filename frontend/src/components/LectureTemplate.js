@@ -3,14 +3,14 @@ import './LectureTemplate.css'
 import LectureTable from './LectureTable'
 import AddclassPopup from './AddclassPopup'
 
-const LectureTemplate = ({ columns, lectures, type, name }) => {
-  return type === 'T' ? (
+const LectureTemplate = ({ columns, lectures, type, name, setLectures }) => {
+  return type === 'TEACHER' ? (
     <div className="LectureTemplate">
       <div className="list-title">
         <div className="title">
           {name} 선생님의 수업
           <div className="addButton">
-            <AddclassPopup />
+            <AddclassPopup lectures={lectures} setLectures={setLectures} />
           </div>
         </div>
       </div>

@@ -1,19 +1,40 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button, Divider, Row, Table, Popconfirm, Input, Col } from 'antd'
 import AttendanceCheckBtns from './AttendanceCheckBtns'
 import AttendanceCheckHeader from './AttendanceCheckHeader'
 import userProfileImage from './svg/profile-user.svg'
+import axios from 'axios'
 
 const AttendanceCheck = ({ studentsData, lectureData, lectureHour }) => {
   const [_studentsData, setStudentsData] = useState(studentsData)
   const [tableData, setTableData] = useState(studentsData)
 
   const onAttendanceStateChanges = ({ uId, newAttendanceState }) => {
-    let newStudentsData = [..._studentsData]
-    newStudentsData[
-      newStudentsData.findIndex((data) => data.uId === uId)
-    ].attendanceState = newAttendanceState
-    setStudentsData(newStudentsData)
+    const url = '/api/attendance'
+    const headers = {
+      accept: 'application/json',
+      'Content-Type': 'application/json',
+    }
+    const data = {
+      userId: uId,
+      lectureId: lectureData.id,
+      nth: lectureHour,
+      check: newAttendanceState,
+    }
+    axios
+      .post(url, data, {
+        headers: headers,
+      })
+      .then((response) => {
+        let newStudentsData = [..._studentsData]
+        newStudentsData[
+          newStudentsData.findIndex((element) => element.id === uId)
+        ].attendanceState = newAttendanceState
+        setStudentsData(newStudentsData)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }
 
   const onExitAttendance = () => {
@@ -54,8 +75,8 @@ const AttendanceCheck = ({ studentsData, lectureData, lectureHour }) => {
       align: 'center',
       render: (text, record) => (
         <AttendanceCheckBtns
-          uId={record.uId}
-          lectureId={lectureData.lectureId}
+          uId={record.id}
+          lectureCode={lectureData.lectureCode}
           lectureHour={lectureHour}
           attendanceState={record.attendanceState}
           onAttendanceStateChange={onAttendanceStateChanges}

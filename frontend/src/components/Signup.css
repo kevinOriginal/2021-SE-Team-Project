@@ -4,13 +4,7 @@
   margin: 24px;
 }
 
-.Signup .ant-btn {
-  margin: 4px;
-}
-
 .Signup .ant-input-group-compact .ant-form-item {
-  width: 25%;
-  padding-right: 4px;
   margin-bottom: 0;
 }
 

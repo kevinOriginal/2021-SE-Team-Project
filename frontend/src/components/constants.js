@@ -1,3 +1,18 @@
+export function parseWeekday(day) {
+  let ret = ''
+  if (day.weekday === 'MON') ret += '월'
+  else if (day.weekday === 'TUE') ret += '화'
+  else if (day.weekday === 'WED') ret += '수'
+  else if (day.weekday === 'THU') ret += '목'
+  else if (day.weekday === 'FRI') ret += '금'
+  else if (day.weekday === 'SAT') ret += '토'
+  else if (day.weekday === 'SUN') ret += '일'
+
+  ret += day.period
+
+  return ret
+}
+
 export const sharedTemplate = [
   {
     title: '수업명',
@@ -8,18 +23,18 @@ export const sharedTemplate = [
   },
   {
     title: '과목ID',
-    dataIndex: 'lectureId',
-    key: 'lectureId',
+    dataIndex: 'lectureCode',
+    key: 'lectureCode',
     width: '100px',
     align: 'center',
   },
-  {
-    title: '교사명',
-    dataIndex: 'teacherName',
-    key: 'teacherName',
-    width: '150px',
-    align: 'center',
-  },
+  // {
+  //   title: '교사명',
+  //   dataIndex: 'teacherName',
+  //   key: 'teacherName',
+  //   width: '150px',
+  //   align: 'center',
+  // },
 
   {
     title: '학년',
@@ -31,8 +46,8 @@ export const sharedTemplate = [
 
   {
     title: '반',
-    dataIndex: 'classNum',
-    key: 'classNum',
+    dataIndex: 'classNumber',
+    key: 'classNumber',
     width: '87px',
     align: 'center',
   },
@@ -108,7 +123,7 @@ export const shareLectures = [
 
 export const shareStudents = [
   {
-    id: '1',
+    id: 1,
     key: '1',
     uId: 10000,
     email: 'kcs@example.com',
@@ -121,7 +136,7 @@ export const shareStudents = [
     attendanceState: null,
   },
   {
-    id: '2',
+    id: 2,
     key: '2',
     uId: 10001,
     email: 'kcs@example.com',
@@ -131,10 +146,10 @@ export const shareStudents = [
     grade: 4,
     classNum: 2,
     studentNum: 2,
-    attendanceState: 'attendance',
+    attendanceState: 'ATTENDANCE',
   },
   {
-    id: '3',
+    id: 3,
     key: '3',
     uId: 10002,
     email: 'kcs@example.com',
@@ -144,10 +159,10 @@ export const shareStudents = [
     grade: 4,
     classNum: 2,
     studentNum: 3,
-    attendanceState: 'absent',
+    attendanceState: 'ABSENT',
   },
   {
-    id: '4',
+    id: 4,
     key: '4',
     uId: 10003,
     email: 'kcs@example.com',
@@ -157,10 +172,10 @@ export const shareStudents = [
     grade: 4,
     classNum: 2,
     studentNum: 4,
-    attendanceState: 'attendance',
+    attendanceState: 'ATTENDANCE',
   },
   {
-    id: '5',
+    id: 5,
     key: '5',
     uId: 10004,
     email: 'kcs@example.com',
@@ -170,10 +185,10 @@ export const shareStudents = [
     grade: 4,
     classNum: 2,
     studentNum: 5,
-    attendanceState: 'tardy',
+    attendanceState: 'TARDY',
   },
   {
-    id: '6',
+    id: 6,
     key: '6',
     uId: 10005,
     email: 'kcs@example.com',
@@ -183,6 +198,6 @@ export const shareStudents = [
     grade: 4,
     classNum: 2,
     studentNum: 6,
-    attendanceState: 'etc',
+    attendanceState: 'ETC',
   },
 ]

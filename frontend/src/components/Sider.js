@@ -2,7 +2,7 @@ import React from 'react'
 import { Layout, Menu } from 'antd'
 import { Link } from 'react-router-dom'
 
-function Sider({ isLogin, type }) {
+function Sider({ isLogin, userObj }) {
   const disableMenus = (
     <>
       <Menu.Item key="3" disabled="true">
@@ -30,12 +30,22 @@ function Sider({ isLogin, type }) {
           <>
             <Menu.Item key="1">
               <span>나의 수업 조회</span>
-              <Link to="/" />
+              <Link
+                to={{
+                  pathname: '/',
+                  state: { userObj: userObj },
+                }}
+              />
             </Menu.Item>
-            {type === 'S' ? (
+            {userObj.role === 'STUDENT' ? (
               <Menu.Item key="2">
                 <span>수강신청</span>
-                <Link to="/sugang" />
+                <Link
+                  to={{
+                    pathname: '/sugang',
+                    state: { userObj: userObj },
+                  }}
+                />
               </Menu.Item>
             ) : (
               <Menu.Item key="2" disabled="true">
@@ -48,9 +58,11 @@ function Sider({ isLogin, type }) {
           <>
             <Menu.Item key="1">
               <span>로그인</span>
+              <Link to="/" />
             </Menu.Item>
             <Menu.Item key="2">
               <span>회원가입</span>
+              <Link to="/signup" />
             </Menu.Item>
           </>
         )}

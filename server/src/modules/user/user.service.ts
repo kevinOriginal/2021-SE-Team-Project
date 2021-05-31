@@ -108,6 +108,7 @@ export class UserService {
         fullName: createUserDto.fullName,
         grade: createUserDto.grade,
         classNumber: createUserDto.classNumber,
+        studentNumber: createUserDto.studentNumber,
         phone: createUserDto.phone,
       })
 

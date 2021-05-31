@@ -33,7 +33,7 @@ export class CreateUserDto {
   readonly password: string
 
   @ApiProperty({
-    example: '김명호',
+    example: '김학생',
   })
   @IsString()
   readonly fullName: string
@@ -51,18 +51,14 @@ export class CreateUserDto {
     example: 5,
   })
   @IsOptional()
-  @IsInt()
   @Min(1)
-  @Max(50)
   readonly classNumber: number
 
   @ApiPropertyOptional({
     example: 25,
   })
   @IsOptional()
-  @IsInt()
   @Min(1)
-  @Max(99)
   readonly studentNumber: number
 
   @ApiPropertyOptional({

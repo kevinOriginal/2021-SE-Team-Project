@@ -27,7 +27,7 @@ export class Lecture extends AbstractEntity<LectureDto> {
   @Column()
   lectureCode: string
 
-  @OneToMany(() => LectureTime, (lectuerTime) => lectuerTime.lecture)
+  @OneToMany(() => LectureTime, (LectureTime) => LectureTime.lecture)
   lectureTime: LectureTime[]
 
   @OneToMany(() => Attendance, (attendance) => attendance.lecture)

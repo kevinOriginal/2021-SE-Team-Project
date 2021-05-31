@@ -23,7 +23,7 @@
 Swagger이라는 프로그램을 이용하여 현재 서버에 나와있는 모든 api를 보며 테스트 할 수 있습니다. 
 `Try It Out` 버튼을 누르면 굳이 postman 같은 툴을 쓰지 않고 swagger 내에서 바로 테스트가 가능합니다.
 `Execute` 을 누르면 서버로 request가 전송이 되고, 밑에 Responses 영역에 Response code (200, 400 등) 과 detail이 돌아옵니다. 
-
+[API list](##API-list)
 
 
 ### 개발환경 안내
@@ -100,7 +100,198 @@ Ctrl+C 누르면 됨 (Mac & Windows 동일함)
 
 1. 실수로 npm을 써 `npm-lock.json` 파일이 생겼다면 지웁시다.
 2. 디렉토리 어디에서 실행 하는지 확인을 꼭 합시다.
-3. 
 
 
 
+## API-list
+
+
+### users
+
+#####  이메일 유효성 및 중복 확인(/api/users/email-verification/{email})
+
+- 회원가입시 이메일 인증을 위해 이메일을 입력할 때 사용.
+
+![image-20210531194646817](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531194646817.png)
+
+- cau2@cau.ac.kr 입력 시 유효한 status code(200)가 response된다.
+
+![image-20210531195024849](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531195024849.png)
+
+
+
+
+
+##### 이메일 인증번호(/api/users/email-validation)
+
+- 회원가입시 이메일로 전송된 이메일 인증번호 확인 시 사용한다. (현재 코드는 000000 으로 통일)
+
+![image-20210531195610667](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531195610667.png)
+
+- status code
+
+![image-20210531200008547](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531200008547.png)
+
+- 인증코드를 정상적으로 입력하였을때의 결과값이다.  email string이 유효하며 code string=000000이므로 status code(200)이고 True
+
+![image-20210531195754652](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531195754652.png)
+
+- 인증코드를 잘못 입력하였을때의 결과값이다. email string이 유효하며 code string=111111이므로 status code(200)이고 False. 
+
+![image-20210531182335055](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531182335055.png)
+
+
+### auth
+##### 회원가입(/api/auth/sign-up)
+
+- 회원가입시 사용되는 api
+
+- role,email,password,fullName,grade,classnumber,studentNumber,phone을 request한다.
+
+  ![image-20210531225155611](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531225155611.png)
+
+- 정상적으로 회원가입이 완료된 경우 status code(200)가 response된다.
+
+![image-20210531203611613](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531203611613.png)
+
+
+
+
+
+##### 로그인(/api/auth/login)
+
+- 로그인에 사용되는 api
+
+- request: email/password를 전송하여 request
+
+  ![image-20210531225132344](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531225132344.png)
+
+- response: id,role,email,fullName,grade,classnumber,studentNumber,phone response
+
+- 정상적으로 로그인이 완료된 경우 status code(200)가 response된다.
+
+![image-20210531201123841](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531201123841.png)
+
+
+
+
+
+##### 로그아웃(/api/auth/logout)
+
+- 로그아웃에 사용되는 api
+- 정상적으로 로그아웃이 완료된 경우 status code(201)가 response된다.
+
+![image-20210531182525311](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531182525311.png)
+
+
+
+##### 내 정보 조회(/api/auth/me)
+
+- 현재 로그인 되어있는 user의 정보를 불러와 데이터값을 조회하는 경우 사용된다.
+- 정상적으로 조회된 경우 status code(200)과 함께 user의 데이터 값이 response된다.
+
+![image-20210531203718633](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531203718633.png)
+
+
+
+
+
+##### 탈퇴(/api/auth)
+
+- 회원 탈퇴시 사용된다.
+- 정상적으로 회원 탈퇴된 경우 status code(200)가 response된다.
+
+![image-20210531201628363](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531201628363.png)
+
+
+
+
+
+
+### lecture
+##### 전체 수업 리스트 조회(/api/lecture)
+
+- 학생이 수강신청을 할 때 필요한 리스트를 반환해주는 api이다.
+- page,pagesize,order 값을 설정하여 반환되는 데이터의 수와 정렬 방식을 조정해줄 수 있다.
+- 정상적으로 데이터가 조회된 경우 status code(200)와 함께 현재 조회가능한 lecture list가 response된다.
+
+![image-20210531193347608](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531193347608.png)
+
+
+
+##### 수업 개설(/api/lectures)
+
+- TEACHER가 본인이 강의할 수업을 개설할 때 사용된다.
+
+- 현재 login되어있는 user의 role='TEACHER'일 경우에만 사용된다
+
+- lectureName(강의명),grade,lectureCode,lectureTime(수업시간)을 request한다.
+
+  ![image-20210531225327147](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531225327147.png)
+
+  ![image-20210531203823541](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531203823541.png)
+
+- 정상적으로 강의가 개설된 경우 status code(200)가 response된다.
+
+  ![image-20210531203833420](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531203833420.png)
+
+
+
+
+
+
+
+##### 수강 신청(/api/lectures/{lectureId})
+
+- 학생이 수강할 lecture를 수강신청할 때 사용된다.
+
+- 학생이 수강신청 하고자 하는 lectureId값을 request한다.
+
+- 정상적으로 강의가 개설된 경우 status code(200)가 response된다.
+
+  ![image-20210531205114051](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531205114051.png)
+
+- responese body 부분에서 수강신청을 진행한 student의 데이터가 "users" 리스트에 추가되었음을 확인할 수 있다.
+
+![image-20210531205143007](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531205143007.png)
+
+
+
+
+
+
+
+##### user 수업 리스트 조회(/api/lectures/users/{userId})
+
+- Teacher/Student가 현재 본인이 강의/수강하고 있는lecture 목록을 조회할 때 사용된다
+- 정상적으로 수업이 조회된 경우 status code(200)와 lecture list가 response된다.
+
+![image-20210531193644709](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531193644709.png)
+
+
+### attendence
+##### 출석체크(/api/attendence)
+
+- 교수가 학생의 출석체크를 진행할 때 사용된다.
+
+- CreateAttendanceDto는 userId(학생ID),lectureId(수업ID),nth(수업차시),check(출결현황)으로 이루어져있다.
+
+- check는 ATTENDED/ABSENT/TARDY/ETC 총 4가지 값 중 1가지로 이루어져야한다.
+
+  ![image-20210531225714077](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531225714077.png)
+
+- 다음은 check에 'ABSENT'를 넣어 request했을때의 결과이다.
+
+![image-20210531230053631](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531230053631.png)
+
+- 정상적으로 출석체크가 완료되어 status code(200)와 response된다.
+
+![image-20210531225051730](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531225051730.png)
+
+- 다음은 check에 null값을 넣어 request했을때의 결과이다.
+
+![image-20210531225207267](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531225207267.png)
+
+- status code(500)와 response된다.
+
+![image-20210531225216255](C:\Users\samsung\AppData\Roaming\Typora\typora-user-images\image-20210531225216255.png)

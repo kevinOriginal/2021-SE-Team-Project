@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import LectureTemplate from './LectureTemplate'
 import { sharedTemplate, shareLectures } from './constants'
 import SelectClassNumberPopup from './SelectClassNumberPopup'
 
-function TeacherHome({ userObj }) {
-  const lectures = shareLectures
-
+function TeacherHome({ userObj, lectures, setLectures }) {
   const columns = [
     ...sharedTemplate,
     {
@@ -14,9 +12,7 @@ function TeacherHome({ userObj }) {
       key: 'AtdCheck',
       width: '177px',
       align: 'center',
-      render: (text, record) => (
-        <SelectClassNumberPopup lectureID={record.lectureID} />
-      ),
+      render: (text, record) => <SelectClassNumberPopup lectureData={record} />,
     },
   ]
 
@@ -24,8 +20,9 @@ function TeacherHome({ userObj }) {
     <LectureTemplate
       columns={columns}
       lectures={lectures}
-      type={userObj.type}
-      name={userObj.name}
+      type={userObj.role}
+      name={userObj.fullName}
+      setLectures={setLectures}
     />
   )
 }

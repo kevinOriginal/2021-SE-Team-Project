@@ -4,25 +4,25 @@ import './AttendanceCheckBtns.css'
 
 const AttendanceCheckBtns = ({
   uId,
-  lectureId,
+  lectureCode,
   lectureHour,
   attendanceState,
   onAttendanceStateChange,
 }) => {
   const onClickAttendance = () => {
-    onAttendanceStateChange({ uId: uId, newAttendanceState: 'attendance' })
+    onAttendanceStateChange({ uId: uId, newAttendanceState: 'ATTENDANCE' })
   }
 
   const onClickAbsent = () => {
-    onAttendanceStateChange({ uId: uId, newAttendanceState: 'absent' })
+    onAttendanceStateChange({ uId: uId, newAttendanceState: 'ABSENT' })
   }
 
   const onClickTardy = () => {
-    onAttendanceStateChange({ uId: uId, newAttendanceState: 'tardy' })
+    onAttendanceStateChange({ uId: uId, newAttendanceState: 'TARDY' })
   }
 
   const onClickEtc = () => {
-    onAttendanceStateChange({ uId: uId, newAttendanceState: 'etc' })
+    onAttendanceStateChange({ uId: uId, newAttendanceState: 'ETC' })
   }
 
   return (
@@ -33,7 +33,7 @@ const AttendanceCheckBtns = ({
             className="attendanceBtn"
             htmlType="button"
             onClick={onClickAttendance}
-            active={attendanceState === 'attendance' ? 'active' : undefined}
+            active={attendanceState === 'ATTENDANCE' ? 'active' : undefined}
           >
             출석
           </Button>
@@ -43,7 +43,7 @@ const AttendanceCheckBtns = ({
             className="absentBtn"
             htmlType="button"
             onClick={onClickAbsent}
-            active={attendanceState === 'absent' ? 'active' : undefined}
+            active={attendanceState === 'ABSENT' ? 'active' : undefined}
           >
             결석
           </Button>
@@ -55,7 +55,7 @@ const AttendanceCheckBtns = ({
             className="tardyBtn"
             htmlType="button"
             onClick={onClickTardy}
-            active={attendanceState === 'tardy' ? 'active' : undefined}
+            active={attendanceState === 'TARDY' ? 'active' : undefined}
           >
             지각
           </Button>
@@ -65,7 +65,7 @@ const AttendanceCheckBtns = ({
             className="etcBtn"
             htmlType="button"
             onClick={onClickEtc}
-            active={attendanceState === 'etc' ? 'active' : undefined}
+            active={attendanceState === 'ETC' ? 'active' : undefined}
           >
             기타
           </Button>
