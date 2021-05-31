@@ -1,0 +1,28 @@
+version: '3'
+services:
+  postgres:
+    image: postgres
+    env_file:
+      - ./server/.development.env
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=attendance-db
+    ports:
+      - 5432:5432
+    volumes:
+      - ./server/database/data/prod:/var/lib/postgresql/data
+
+  apiserver:
+    build:
+      context: ./server
+      dockerfile: ./Dockerfile #context 안에서 상대경로
+    environment:
+      - NODE_ENV=development
+    command: ['yarn', 'start:dev']
+    ports:
+      - 80:80
+    volumes:
+      - ./server:/app:cached
+    depends_on:
+      - postgres
