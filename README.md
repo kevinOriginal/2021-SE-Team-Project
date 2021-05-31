@@ -1,6 +1,5 @@
 # Attendance Management System
-
-
+![교사-수업상세페이지](https://user-images.githubusercontent.com/76427521/120205277-bdb1db00-c264-11eb-9e31-84b0e18bbaaf.PNG)
 ## Contents
 ### - [1st Checkpoint](#1st-Checkpoint)
  - [Problem Statement](#problem-statement)
@@ -17,7 +16,7 @@
 ### - Frontend & Server READ.ME
 - [Frontend](/frontend/README.md)
 - [Server](/server/README.md)
- 
+
 
 ## Contributors
 
@@ -181,7 +180,7 @@ Ctrl+C 누르면 됨 (Mac & Windows 동일함)
   - [210324](/docs/회의록/210324_minutes.md)
   - [210406](/docs/회의록/210406_minutes.md)
   - [210423](/docs/회의록/210423_minutes.md)
-  
+
 ### 1. Requirements (Stories)
   - [Core & Auth](/docs/Core/Requirements.md)
   - [Teacher](/docs/Teacher/Requirements.md)
@@ -220,7 +219,7 @@ Ctrl+C 누르면 됨 (Mac & Windows 동일함)
 ### 0. Meeting logs 
   - [210505](/docs/회의록/210505_minutes.md)
   - [210508](/docs/회의록/210508_minutes.md)
-  
+
 ### 1. System Design Document(SDD)
 
 #### Core
@@ -242,7 +241,7 @@ Ctrl+C 누르면 됨 (Mac & Windows 동일함)
   - [210519](/docs/회의록/210519_minutes.md)
   - [210522](/docs/회의록/210522_minutes.md)
   - [210531](/docs/회의록/210531(final)_minutes.md)
-  
+
 ### 1. UI
   - [UI Mockup](/docs/UI/UI_Mockup.md)
 
@@ -253,10 +252,39 @@ Ctrl+C 누르면 됨 (Mac & Windows 동일함)
   - [ERD](/docs/ERD/ERD.md)
 
 
-### 3. 기술 스택에 대한 설명
+### 3. 기술 스택에 및 활용 방안
 
 - 운영체제에 관계 없이, 그리고 빠른 배포를 위해 docker (가상 환경) 위해서 서버와 DB를 띄우도록 했다. 
-- Backend와 Frontend가 유기적으로 개발을 병행 할 수 있도록 JavaScript, 여기서 더 나아가 서버에서는 타입 안정성을 보장하기 위해 TypeScript를 사용했다.
-- **SOLID 디자인 패턴**을 따르기 위해 Node.js runtime 위에서 동작하는 Nest.js 라는 프레임워크를 사용하였다.
+
+- Backend와 Frontend가 유기적으로 개발을 병행 할 수 있도록 둘 다 **한 언어인 JavaScript** 기반으로 코드를 작성 했다. 여기서 더 나아가 서버에서는 **타입 안정성을 보장하기 위해 TypeScript**를 사용했다.
+
+- **SOLID 디자인 패턴**을 최대한 따르기 위해 Node.js runtime 위에서 동작하는 Nest.js 라는 프레임워크를 사용하였다.
+
+  - 다음 과 같은 방식을 서버는 전반적으로 따른다. 
+
+    
+
+    ![image](https://user-images.githubusercontent.com/18115360/120211033-6d8a4700-c26b-11eb-96eb-a287ec58cd95.png)
+
+    
+
+    - User이 route를 접속하면 controller 을 거쳐 알맞는 서비스로 가도록 설계를 하였다.
+
+    ![img](https://docs.nestjs.com/assets/Controllers_1.png)
+
+    - Provider pattern 을 통해 dependency injection 기법을 활용했다.
+
+    ![img](https://docs.nestjs.com/assets/Components_1.png)
+
 - Client - Server 간 쉽게 소통을하고 모듈화된 개발 을 하기 위해 **REST API**를 사용하였으며 swagger 문서화를 통해 테스트를 직접 해볼 수 있게 했다.
-- 재사용성이 상당히 많은 UI가 많아 이에 최적화된 View Library 인 React를 사용하였다.
+
+- 중복이 사당한 UI가 많아 이에 최적화된 Reusability 가 좋은 View Library 인 **React**를 사용하였다.
+
+- **AWS와 Netlify**를 와 같은 IaaS 를 활용하여, Email 발송, Uri 처리, deveops 처리, deployment 관리를 체계적이고 쉽게 할 수 있었다.  
+
+- Agile 하게 개발을 하게 Open source를 최대한 활용했다.
+
+- 개발 프로세스를 자동 화 하기 위해 CI/CD를 도입. (원래는 develop/staging/master 3 가지 브랜치로 나뉘어야 하나, 프로젝트 규모와 시간 관계상 master 한 브랜치에서만 되도록 했다.)
+
+![hi](https://user-images.githubusercontent.com/18115360/120210323-9c53ed80-c26a-11eb-9047-546a384d40aa.png)
+
