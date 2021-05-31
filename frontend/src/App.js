@@ -51,7 +51,11 @@ function App() {
           path="/attendance"
           render={() => (
             <AttendanceCheck
-              studentsData={shareStudents} // test data
+              studentsData={
+                location.state.users
+                  ? location.state.users.slice(1)
+                  : shareStudents
+              } // test data
               lectureData={location.state.lectureData}
               lectureHour={location.state.nth}
             />

@@ -3,17 +3,21 @@
 
 ## Contents
 ### - [1st Checkpoint](#1st-Checkpoint)
+ - [Problem Statement](#problem-statement)
+ - [Sub-Group](#sub-group)
+ - [Requirements (Stories)](#1-requirements-stories)
+ - [Use Case](#2-use-case)
+ - [Domain Model](#3-domain-model)
 ### - [2nd Checkpoint](#2nd-Checkpoint)
+ - [System Design Document(SDD)](#1-system-design-documentsdd)
 ### - [3rd Checkpoint](#3rd-Checkpoint)
- 1. [Contributors](#Contributors)
- 2. [Problem Statement](#Problem-Statement)
- 3. [Sub-Group](#Sub-Group)
- 4. [Requirements (Stories)](#Requirements)
- 5. [Use Case](#Use-Case)
- 6. [Domain Model](#Domain-Model)
- 7. [System Design Document(SDD)](#System-Design-Document)
- 8. [UI](#UI)
- 9. [ERD](#ERD)
+ - [UI](#1-ui)
+ - [ERD](#2-erd)
+
+### - Frontend & Server READ.ME
+- [Frontend](/frontend/README.md)
+- [Server](/server/README.md)
+ 
 
 ## Contributors
 
@@ -256,7 +260,3 @@ Ctrl+C 누르면 됨 (Mac & Windows 동일함)
 - **SOLID 디자인 패턴**을 따르기 위해 Node.js runtime 위에서 동작하는 Nest.js 라는 프레임워크를 사용하였다.
 - Client - Server 간 쉽게 소통을하고 모듈화된 개발 을 하기 위해 **REST API**를 사용하였으며 swagger 문서화를 통해 테스트를 직접 해볼 수 있게 했다.
 - 재사용성이 상당히 많은 UI가 많아 이에 최적화된 View Library 인 React를 사용하였다.
-
-### 4. Frontend & Server READ.ME
-- [Frontend](/frontend/README.md)
-- [Server](/server/README.md)

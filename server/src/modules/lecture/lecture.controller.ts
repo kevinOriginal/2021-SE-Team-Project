@@ -64,9 +64,9 @@ export class LectureController {
 
   @Get('/users/:userId')
   @ApiOperation({
-    summary: '[선생님 ONLY] 학생/선생의 수업 리스트 조회',
+    summary: '학생/선생의 수업 리스트 조회',
   })
-  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @UseGuards(AuthGuard('jwt'))
   async getUserLectures(
     @Req() req: Request,
     @Query() query: PaginationQuery,

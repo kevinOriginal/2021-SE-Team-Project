@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Form, Modal, Button, Select, Input } from 'antd'
 import { useHistory } from 'react-router'
 import { useLocation } from 'react-router-dom'
+import axios from 'axios'
 
 const { Option } = Select
 
@@ -14,16 +15,30 @@ const SelectClassNumberPopup = ({ lectureData }) => {
   const [selectClassNumberForm] = Form.useForm()
 
   const onFinish = (result) => {
-    console.log('finish, result:', result)
-    console.log('lecture data', lectureData)
-    history.push({
-      pathname: '/attendance',
-      state: {
-        userObj: location.state.userObj,
-        lectureData: lectureData,
-        nth: result.classNumber,
-      },
-    })
+    const url = '/api/lectures/' + lectureData.id
+    const headers = {
+      accept: '*/*',
+    }
+
+    axios
+      .get(url, {
+        headers: headers,
+      })
+      .then((response) => {
+        console.log(response.data.users)
+        history.push({
+          pathname: '/attendance',
+          state: {
+            userObj: location.state.userObj,
+            lectureData: lectureData,
+            users: response.data.users,
+            nth: result.classNumber,
+          },
+        })
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }
 
   const onFinishFailed = (result) => {

@@ -22,8 +22,8 @@
 
 Swagger이라는 프로그램을 이용하여 현재 서버에 나와있는 모든 api를 보며 테스트 할 수 있습니다. 
 `Try It Out` 버튼을 누르면 굳이 postman 같은 툴을 쓰지 않고 swagger 내에서 바로 테스트가 가능합니다.
-`Execute` 을 누르면 서버로 request가 전송이 되고, 밑에 Responses 영역에 Response code (200, 400 등) 과 detail이 돌아옵니다. 
-
+`Execute` 을 누르면 서버로 request가 전송이 되고, 밑에 Responses 영역에 Response code (200, 400 등) 과 detail이 돌아옵니다.   
+[API list](#API-list)
 
 ### 개발환경 안내
 
@@ -102,15 +102,23 @@ Ctrl+C 누르면 됨 (Mac & Windows 동일함)
 
 
 
-## API-list
+## **API list**
 - 웹앱에서 사용되는 API는 다음과 같이 구성되어있다.
 ![image](https://user-images.githubusercontent.com/59490892/120207498-7b3dcd80-c267-11eb-9176-a849f8d1bb03.png)
+1. [users](#users)
+2. [auth](#auth)
+3. [lecture](#lecture)
+4. [attendence](#attendence)
 
 
 
-### **users**
 
-#####  이메일 유효성 및 중복 확인(/api/users/email-verification/{email})
+
+## **users**
+
+
+
+###  이메일 유효성 및 중복 확인(/api/users/email-verification/{email})
 
 - 회원가입시 이메일 인증을 위해 이메일을 입력할 때 사용.
 
@@ -119,12 +127,14 @@ Ctrl+C 누르면 됨 (Mac & Windows 동일함)
 
 - cau2@cau.ac.kr 입력 시 유효한 status code(200)가 response된다.
 
-![image-20210531195024849](https://user-images.githubusercontent.com/59490892/120206114-bd660f80-c265-11eb-8c6b-48f9607a0973.png).png)
+![image-20210531195024849](https://user-images.githubusercontent.com/59490892/120206114-bd660f80-c265-11eb-8c6b-48f9607a0973.png)
 
 
 
 
-##### 이메일 인증번호(/api/users/email-validation)
+
+
+### 이메일 인증번호(/api/users/email-validation)
 
 - 회원가입시 이메일로 전송된 이메일 인증번호 확인 시 사용한다. (현재 코드는 000000 으로 통일)
 
@@ -142,14 +152,19 @@ Ctrl+C 누르면 됨 (Mac & Windows 동일함)
 
 
 - 인증코드를 잘못 입력하였을때의 결과값이다. email string이 유효하며 code string=111111이므로 status code(200)이고 False. 
-- 
+
 ![image-20210531182335055](https://user-images.githubusercontent.com/59490892/120206297-fdc58d80-c265-11eb-8c24-47c76cb9699c.png)
 
 
 
-### **auth**
 
-##### 회원가입(/api/auth/sign-up)
+
+
+## **auth**
+
+
+
+### 회원가입(/api/auth/sign-up)
 
 - 회원가입시 사용되는 api
 
@@ -165,7 +180,9 @@ Ctrl+C 누르면 됨 (Mac & Windows 동일함)
 
 
 
-##### 로그인(/api/auth/login)
+
+
+### 로그인(/api/auth/login)
 
 - 로그인에 사용되는 api
 
@@ -183,7 +200,9 @@ Ctrl+C 누르면 됨 (Mac & Windows 동일함)
 
 
 
-##### 로그아웃(/api/auth/logout)
+
+
+### 로그아웃(/api/auth/logout)
 
 - 로그아웃에 사용되는 api
 - 정상적으로 로그아웃이 완료된 경우 status code(201)가 response된다.
@@ -193,7 +212,9 @@ Ctrl+C 누르면 됨 (Mac & Windows 동일함)
 
 
 
-##### 내 정보 조회(/api/auth/me)
+
+
+### 내 정보 조회(/api/auth/me)
 
 - 현재 로그인 되어있는 user의 정보를 불러와 데이터값을 조회하는 경우 사용된다.
 - 정상적으로 조회된 경우 status code(200)과 함께 user의 데이터 값이 response된다.
@@ -204,7 +225,8 @@ Ctrl+C 누르면 됨 (Mac & Windows 동일함)
 
 
 
-##### 탈퇴(/api/auth)
+
+### 탈퇴(/api/auth)
 
 - 회원 탈퇴시 사용된다.
 - 정상적으로 회원 탈퇴된 경우 status code(200)가 response된다.
@@ -216,10 +238,10 @@ Ctrl+C 누르면 됨 (Mac & Windows 동일함)
 
 
 
-### **lecture**
+## **lecture**
 
 
-##### 전체 수업 리스트 조회(/api/lecture)
+### 전체 수업 리스트 조회(/api/lecture)
 
 - 학생이 수강신청을 할 때 필요한 리스트를 반환해주는 api이다.
 - page,pagesize,order 값을 설정하여 반환되는 데이터의 수와 정렬 방식을 조정해줄 수 있다.
@@ -230,7 +252,8 @@ Ctrl+C 누르면 됨 (Mac & Windows 동일함)
 
 
 
-##### 수업 개설(/api/lectures)
+
+### 수업 개설(/api/lectures)
 
 - TEACHER가 본인이 강의할 수업을 개설할 때 사용된다.
 
@@ -252,7 +275,7 @@ Ctrl+C 누르면 됨 (Mac & Windows 동일함)
 
 
 
-##### 수강 신청(/api/lectures/{lectureId})
+### 수강 신청(/api/lectures/{lectureId})
 
 - 학생이 수강할 lecture를 수강신청할 때 사용된다.
 
@@ -272,7 +295,7 @@ Ctrl+C 누르면 됨 (Mac & Windows 동일함)
 
 
 
-##### user 수업 리스트 조회(/api/lectures/users/{userId})
+### user 수업 리스트 조회(/api/lectures/users/{userId})
 
 - Teacher/Student가 현재 본인이 강의/수강하고 있는lecture 목록을 조회할 때 사용된다
 - 정상적으로 수업이 조회된 경우 status code(200)와 lecture list가 response된다.
@@ -284,10 +307,10 @@ Ctrl+C 누르면 됨 (Mac & Windows 동일함)
 
 
 
-### **attendence**
+## **attendence**
 
 
-##### 출석체크(/api/attendence)
+### 출석체크(/api/attendence)
 
 - 교수가 학생의 출석체크를 진행할 때 사용된다.
 

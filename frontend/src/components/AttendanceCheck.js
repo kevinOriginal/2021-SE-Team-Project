@@ -9,6 +9,8 @@ const AttendanceCheck = ({ studentsData, lectureData, lectureHour }) => {
   const [_studentsData, setStudentsData] = useState(studentsData)
   const [tableData, setTableData] = useState(studentsData)
 
+  console.log(_studentsData)
+
   const onAttendanceStateChanges = ({ uId, newAttendanceState }) => {
     const url = '/api/attendance'
     const headers = {
@@ -58,14 +60,14 @@ const AttendanceCheck = ({ studentsData, lectureData, lectureHour }) => {
     },
     {
       title: '번호',
-      dataIndex: 'studentNum',
-      key: 'studentNum',
+      dataIndex: 'studentNumber',
+      key: 'studentNumber',
       align: 'center',
     },
     {
       title: '이름',
-      dataIndex: 'name',
-      key: 'name',
+      dataIndex: 'fullName',
+      key: 'fullName',
       align: 'center',
     },
     {
@@ -101,7 +103,7 @@ const AttendanceCheck = ({ studentsData, lectureData, lectureHour }) => {
             placeholder="Search Name"
             onSearch={(value) => {
               const filteredData = _studentsData.filter((entry) =>
-                entry.name.includes(value),
+                entry.fullName.includes(value),
               )
               setTableData(filteredData)
             }}
